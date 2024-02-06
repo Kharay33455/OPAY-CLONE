@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'base/opay.css' %}">
+</head>
+
+<body>
+    {% if amount %}
+
+
+    <div id="body_blur">
+        <div>
+            <div class="box">
+                <div class="overlay_back">
+                    <span>
+                        <a href="{% url 'base:to_opay_account' slug=bankuser.slug %}" >
+                        <span style="float: inline-start; font-size: larger; color: black;">
+                            &lt;
+                        </span>
+                    </a>
+                        <p style="text-align: center; font-size: larger;">Transfer To Opay Account</p>
+                    </span>
+                    <img src="{% static 'base/images/opay.jpeg' %}"
+                        style="height: 20%; width: 20%; margin-left: auto; margin-right: auto; display: block; filter: brightness(35%); border-radius: 50%;">
+                    <p style="text-align: center; font-size: larger; font-weight: bolder;">{{ recipient.first_name }}
+                        {{recipient.last_name }}</p>
+                    <p style="text-align: center; font-weight: lighter;">{{ recipient.account_number }}</p>
+                    <br /><br /><br />
+                    <div>
+                        <div>
+                            <p>Amount:</p>
+                            <p style=" padding:3%; border:  1px; border-color: black; border-style: solid;">{{amount}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="overlay">
+                    <div class="confirm">
+                        <p style="font-size: 250%; text-align: center;">${{amount}} <a
+                                href="{% url 'base:tfamount' slug=bankuser.slug account_number=account_number %}"> <span
+                                    style="float: right;">&times;</span> </a></p>
+                        <p><span style="font-weight: lighter;">Account Number</span><span
+                                style="float: right;">{{recipient.account_number}}</span></p>
+                        <p><span style="font-weight: lighter;">Name</span><span
+                                style="float : right;">{{recipient.first_name}} {{recipient.last_name}}</span></p>
+                        <p><span style="font-weight: lighter;">Amount</span><span
+                                style="float: right;">${{amount}}.00</span></p>
+                        <p style="font-weight: lighter;" >Payment Method</p>
+                        <p> <span style="padding-top: 10%;"> <img src="{% static 'base/images/wallet_icon.png' %}"
+                                    style="border-radius: 50%; height: 40px;"> &nbsp; </span> <span
+                                style="font-size: 20px; padding-bottom: 100px;">
+                                Balance <span style="font-weight: lighter;">(${{ bankuser.balance }})</span>
+                            </span> <span style="float: right;">&gt;</span></p>
+                        <p style="text-align: center;">
+                            <a href="#popup1">
+                                <button
+                                    style="color: white; background-color: rgb(100,203,106); width: 100%; height: 50px; transition: all 0.3s ease-out;">Pay</button>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <form action="{% url 'base:toperator' slug=bankuser.slug account_number=recipient.account_number amount=amount  %}" method="post">
+                    {% csrf_token %}
+                <div id="popup1" class="overlay2">
+                    <span class="close">&times;</span>
+                    <div class="popup">
+
+                        <p style="font-weight: bold; margin-bottom: 500px;">Enter Payment Pin<br/><br/><br/>
+                            <input type="password" required minlength="4" maxlength="4" name="pin" style="height: 30px;">                            
+                        </p>
+
+                      
+                    </div>
+                    <br/><br/>
+                    <p>
+                        <button type="submit"  class="pay_button">Pay Now</button>
+            
+                </p>
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <div style="font-weight: bolder;">
+        <span>
+            <a href="{% url 'base:to_opay_account' slug=bankuser.slug%}" >
+            <span style="float: inline-start; font-size: larger; color: black;">
+                &lt;
+            </span>
+        </a>
+            <p style="text-align: center; font-size: larger;">Transfer To Opay Account</p>
+        </span>
+        <img src="{% static 'base/images/opay.jpeg' %}"
+            style="height: 20%; width: 20%; margin-left: auto; margin-right: auto; display: block;">
+        <p style="text-align: center; font-size: larger; font-weight: bolder;">{{ recipient.first_name }}
+            {{recipient.last_name }}</p>
+        <p style="text-align: center; font-weight: lighter;">{{ recipient.account_number }}</p>
+        <br /><br /><br />
+        <div>
+            <form action="{% url 'base:amount_op' slug=bankuser.slug account_number=recipient.account_number  %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <label for="id_amount">Amount:</label><br /><br />
+
+
+
+                    <input style="width: 100%; height: 30px;" type="number" name="amount" min="10" max="5000000"
+                        required id="id_amount" placeholder="$5.00 - $5000000">
+
+                </div><br /><br /><br />
+
+                <div>
+                    <label for="id_remark">Remark:</label><br /><br />
+
+
+
+                    <input type="text" name="remark" id="id_remark" style="width: 100%; height: 30px;"
+                        placeholder="What is this for? (Optional)">
+
+
+
+                </div>
+                <br /><br />
+
+                <label for="amount_submit"> <img src="{% static 'base/images/confirm_button.jpg' %}"
+                        style="height: 30%; width: 100%; border: 0px; "> </label>
+                <input type="submit" id="amount_submit" class="hidden" value="" style="display: none;">
+
+            </form>
+        </div>
+
+
+    </div>
+    {% endif %}
+</body>
+
+</html>

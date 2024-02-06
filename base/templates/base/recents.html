@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'base/opay.css' %}">
+</head>
+<body>
+    
+    {% for reci in recipient %}
+    <table>
+        <tr>
+            <td> <img class="iframeicons" src="{% static 'base/images/opay.jpeg' %}" ></td>
+            <td><strong><span>{{reci.first_name}} {{reci.last_name}} </span></strong><br/>{{reci.account_number}}</td>    
+        </tr>
+    </table>
+    
+    {% endfor %}
+</body>
+</html>

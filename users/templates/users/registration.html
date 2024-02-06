@@ -1,0 +1,58 @@
+{% load static %}
+<head>
+
+    <link rel="stylesheet" href = "{% static 'base/opay.css' %}">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+</head>
+<body class="widther">
+<div   style="text-align: center; display: inline-flexbox; font-weight: bolder; font-size: larger;" > <span style="float: left;" ><a style="text-decoration: none; font-size: 25px;" href="{% url 'users:login' %}" >&lt;</a></span> Create a new account  </div>
+
+<div style="text-align: center;">
+    <img style="width: 20%;" src="{% static 'base/images/p.jpg' %}" >
+</div>
+<img src="{% static 'base/images/signupbonus.jpg' %}" style="width: 100%; border-radius: 59px;" >
+
+<br/>
+<br/>
+{% if error %}
+{{error}}
+{% endif %}
+<form  action="{% url 'users:register' %}" method="post" >
+    {% csrf_token %}
+    
+<div>
+    <p style="border: 1px; border-style: solid; height: 5%; padding-top: 10px;" >
+    <span >&nbsp; <img src="{% static 'base/images/flag.jpg' %}" style="width: 15px; height: 15px;"> +234 <span style="font-weight: lighter;">|</span><input required minlength="11" maxlength="11" type="number" name="account_number" placeholder="Enter phone number" style="border: 0;" ></span>
+</p>
+<p class="forms" >
+    <span> <input type="number" style="border: 0;" name="password" minlength="6" maxlength ="6" required placeholder="  Enter 6-digits"><span style="float: right;">  &nbsp; &nbsp;&nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+        <b style="color: rgb(50, 170, 70);" >Get OTP</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span> </span> 
+</p>
+<p class="forms">
+    <span> &nbsp; <input type="text" required style="border: 0;" name="first_name" maxlength="20" placeholder="First Name" ></span>
+</p>
+</p>
+<p class="forms">
+    <span> &nbsp; <input type="text" required style="border: 0;" name="last_name" maxlength="20" placeholder="Last Name" ></span>
+</p>
+</p>
+<p class="forms">
+    <span> &nbsp; <input type="text" required style="border: 0;" name="pin" placeholder="Enter secure 4 digits PIN" minlength="4" maxlength="4"></span>
+</p>
+<p>
+<input type="checkbox" required  id="t_and_c" ><label for="t_and_c" > <small style="font-weight: lighter; color: gray;" >Click "Confirm" to accept <span style="color: rgb(50, 170, 70);" >Terms and Conditions</span></small></label>
+</p>
+</div>
+
+<div style="text-align: center;" >
+
+
+<input style="width: 90%; height: 7%; text-align: center; color: white; background-color: rgb(50, 170, 70); border: 0cap;" type="submit" value="Confirm" >
+</div>
+</form> 
+
+<br/>
+<div style="margin-left: 5%;" >
+</div>
+</body>

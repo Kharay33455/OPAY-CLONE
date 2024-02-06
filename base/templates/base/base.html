@@ -1,0 +1,68 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opay Faker!!!</title>
+    <link rel="stylesheet" href="{% static 'base/opay.css' %}">
+</head>
+
+<body>
+    <p>
+    <div>
+        <strong style="font-size:22px;">Hi</strong>
+        <img id="top" src="{% static 'base/images/52025.jpg' %}">
+    </div>
+    </p>
+    <a style="color: green; text-decoration: none;" href="{% url 'users:login' %}" >LOGIN</a>
+    <br />
+    <p>
+    <div class="money">
+        <small>Available Balance &#128065;</small>
+        <span style="font-size:15px; float: right; text-decoration: none;">Transaction history &gt; </span>
+        <br />
+        <span><strong style="font-size: 40px;">*****</strong></span>
+        <br/><br/><br/><br/>
+
+        <!--functionality div-->
+        <div>
+            <div>
+                <img class="icon" style="padding-left: 3%;" src="{% static 'base/images/add_money.jpg' %}">
+            <img class="icon" style="margin-left:35%;" src="{% static 'base/images/transfer.jpg' %}">
+                <img class="icon" style="padding-right: 3%; float: right;" src="{% static 'base/images/withdraw.jpg' %}">
+                <br />
+                <small>
+                    <span>Add money</span>
+                    <span style="margin-left: 30%; margin-right: auto;">Transfer</span>
+                    <span style="float: right;">Withdraw</span>
+                </small>
+            </div>
+        </div>
+    </div>
+    </p>
+    <div>
+        <img class="smallicons" src="{% static 'base/images/dummyicons.jpg' %}">
+    </div>
+    <br />
+    <div>
+        <img style="width: 100%; height: 10%;" src="{% static 'base/images/logged_out_ad_icon.jpg' %}" >
+    </div>
+    <div>
+        <img style="float: right; width: 20%;" src="{% static 'base/images/security.jpg' %}">
+    </div>
+    <br />
+    <br />
+    <br /><br />
+    <p></p>
+    <br />
+    <br />
+    <div style="margin-top: 20%;">
+        <img style="height: 20%; width: 100%;" src="{% static 'base/images/footer.jpg' %}">
+    </div>
+</body>
+
+</html>

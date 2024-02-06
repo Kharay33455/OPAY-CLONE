@@ -1,0 +1,80 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opay Faker!!!</title>
+    <link rel="stylesheet" href="{% static 'base/opay.css' %}">
+</head>
+
+<body>
+    <p>
+    <div>
+        <img id="pfp" src= "{% static 'base/images/IMG_0817.jpg' %}" >
+        <strong style="font-size:22px;">Hi, {{firstname}}</strong>
+        <img id="top" src="{% static 'base/images/52025.jpg' %}">
+    </div>
+    <br/>
+    <a style="color: red; text-decoration: none;" href="{% url 'users:logout' %}" >LOGOUT</a>
+    </p>
+    
+    <p>
+    <div class="money">
+        <small>Available Balance &#128065;</small>
+        <a class="tfhistory" href="{% url 'base:tfhistory' slug=bankuser.slug%}" >
+        <span style="font-size:15px; float: right; text-decoration: none;">Transaction history &gt; </span>
+        </a>
+        <br />
+        <span><strong style="font-size: 40px;">${{balance}}.<small>99</small></strong><br />
+            <small>& Cashback ${{cashback}}</small></span>
+            <br/><br/>
+
+        <!--functionality div-->
+        <div>
+            <div >
+                <div style="width: 99%; text-align: center; padding-left: 2%;" >
+                <img class="icon" style="float: left;" src="{% static 'base/images/add_money.jpg' %}">
+                <a href="{% url 'base:transfer' slug=bankuser.slug %}" ><img class="icon"  src="{% static 'base/images/transfer.jpg' %}"></a>
+                <img class="icon" style="float: right; padding-right: 4%;" src="{% static 'base/images/withdraw.jpg' %}">
+            </div>
+                
+             <div>
+                <p style="text-align: center; width: 98%;" >
+                    <small>
+                    <span style="float: left;">Add Money</span>
+                    <span>Transfer</span>
+                    <span style="float: right;">Withdraw</span>
+                </small>
+                </p>
+             </div>
+            </div>
+        </div>
+    </div>
+    </p>
+    <div>
+        <img class="smallicons" src="{% static 'base/images/dummyicons.jpg' %}">
+    </div>
+    <br />
+    <div>
+        <img style="width: 75%; height: 10%;" src="{% static 'base/images/refer.jpg' %}">
+        <img style="width: 15%; height: 10%;" src="{% static 'base/images/exit.jpg' %}">
+    </div>
+    <div>
+        <img style="float: right; width: 20%;" src="{% static 'base/images/security.jpg' %}">
+    </div>
+    <br />
+    <br />
+    <br /><br />
+    <p></p>
+    <br />
+    <br />
+    <div style="margin-top: 20%;">
+        <img style="height: 20%; width: 100%;" src="{% static 'base/images/footer.jpg' %}">
+    </div>
+</body>
+
+</html>

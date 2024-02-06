@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'base/opay.css' %}">
+</head>
+
+<body style="font-weight: bold; padding: 3%;">
+    <div style="position: fixed; top: 0; width: 90%; background-color: white; z-index: 1;">
+
+        <div
+            style="text-align: center; font-size: larger; font-weight: bolder; padding-left: 10px; padding-right: 10px; ">
+            <div> <span style="float: left;"><a style="text-decoration: none;"
+                        href="{% url 'base:home' slug=bankuser.slug %}">&lt;</a></span> Transaction <span> <img
+                        style="width: 30px; float: right;" src="{% static 'base/images/transaction_history.jpg' %}">
+                </span> </div>
+        </div>
+        <br />
+        <div style="color: gray; text-align: center; padding-left: 10%; padding-right: 10%; ">
+            <span style="float: left;"> All Categories <span
+                    style="font-size: 130%; font-weight: lighter; font-family:sans-serif;">v </span> </span> <span
+                style="float: right;"> Any status <span
+                    style="font-size: 130%; font-weight: lighter; font-family:sans-serif;">v </span> </span>
+
+        </div>
+        <br /><br />
+        <div style="margin-bottom: 20px;">
+            <span>Jan v</span><br /><br />
+            <span><span style="color: gray;">In</span> $1,081,988.00 </span> <span><span style="color: gray;">Out</span>
+                $108,988.00 </span>
+
+        </div>
+    </div>
+    <br />
+    <div style="padding-top: 50%;">
+        {% if transactions %}
+        {%for transaction in transactions%}
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 10%;"> <a href="{% url 'base:tfdetails' transaction_id=transaction.transaction_id slug=bankuser.slug  %}">
+                        <img src="{% static 'base/images/tftobank.jpg' %}" style="width:100%;"> </a>
+                </td>
+                <td style="width: 70%;"> <a class="transaction" href="{% url 'base:tfdetails' slug=bankuser.slug transaction_id=transaction.transaction_id %}">Transfer to
+                    Bank</a><br /><small style="color: gray; font-weight: lighter;">{{transaction.time_of_transfer}} -
+                        {{transaction.recipient}} {{transaction.recipient.last_name}}</small> </td> 
+                <td style="width: 90%;"> <a href="{% url 'base:tfdetails' slug=bankuser.slug transaction_id=transaction.transaction_id %}" class="transaction"> -${{transaction.amount}}
+                    <br /><small style="color: rgb(100, 203, 106);">Sucessful</small> </a></td>
+            </tr>
+        </table>
+        {%endfor%}
+
+    </div>
+    {% else %}
+    <p style="text-align: center; color: green;">No transactions to display</p><a
+        href="{% url 'base:transfer' slug=bankuser.slug %}">
+        <div style="text-align: center;"><button style="
+ color: whitesmoke; background-color: rgb(100, 203, 106); font-size: xx-small; font-weight: bolder;">Click here to make
+                your first transfer</button>
+    </a></div>
+    {% endif %}
+    <img style="width: 100%; position: fixed; bottom:0%" src="{% static 'base/images/bottom.png' %}">
+</body>
+
+</html>

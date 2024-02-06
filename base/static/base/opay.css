@@ -1,0 +1,164 @@
+#top {
+    height: 60px;
+    width: 160px;
+    float: right;
+}
+
+#pfp {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    float: left;
+}
+
+.money{
+    background-color: rgb(100, 200, 100);
+    color: white;
+    padding: 3%;
+}
+.icon {
+    height: 30px;
+    width: 30px;
+}
+.tf {
+    width: 100%; 
+    height: 10%;
+}
+
+.smallicons {
+    height: 25%;
+    width: 100%;
+}
+
+.iframeicons {
+    height: 30%;
+    width: 30%;
+    border-radius: 50%;
+}
+
+#id_account_number {
+    
+    width: 350px;
+}
+
+.overlay{
+    visibility: visible;
+    opacity: 1;
+    position: absolute;
+    top:50%;
+    font-weight: bolder;
+    width: 100%;
+    background-color: whitesmoke;
+    padding-left: 0%;
+    float: left;
+}
+
+.overlay_back{
+    opacity: 1;
+
+}
+
+#body_blur{
+    background-color: rgba(0,0,0,0.7);
+
+}
+.overlay2{
+    position: fixed;
+    opacity: 0;
+    background-color: whitesmoke;
+    top:30%;
+    width: 100%;
+    transition: opacity 500ms;
+    visibility: hidden;
+
+}
+
+.overlay2:target{
+    visibility: visible;
+    opacity: 2;
+     
+}
+
+.popup{
+    transition: 5s ease-out;
+    padding-left: 30%;
+    padding-right: 30%;
+  
+}
+.overlay2 .close{
+    font-size: 30px;
+    text-decoration: none;
+    transition: all 200ms;
+    font-weight: bolder;
+
+}
+.pay_button{
+    color: white; 
+    background-color: rgb(100,203,106); 
+    width: 100%; 
+    height: 50px; 
+    transition: all 0.3s ease-out; 
+    position: fixed; 
+    opacity: 4;
+    bottom: 5%;
+    margin-top: 50px;
+    border-radius: 10%;
+}
+
+a:visited{
+    color: black
+}
+
+a:hover{
+    color: white;
+}
+
+.tfhistory:visited{
+    color: white;
+}
+
+a:link{
+    color : white
+}
+
+.r_and_b:link{
+    color: black
+}
+
+.r_and_b:visited{
+    color: black
+}
+
+.r_and_b:hover{
+
+    color : black
+}
+
+.r_and_b{
+    text-decoration: none;
+}
+.forms{
+    border: 1px; border-style: solid; height: 5%; padding-top: 10px;
+}
+.grey{
+    font-size: smaller;
+    color: gray;
+}
+.transaction:link{
+    color: black;
+}
+.transaction:visited{
+    color: black;
+}
+.transaction:hover{
+    color: black;
+}
+.transaction{
+    text-decoration: none;
+}
+@media screen and (max-width: 300px)
+{
+    body {
+        width: 99%;
+    }
+}

@@ -1,0 +1,49 @@
+{% load static %}
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable= no">
+
+</head>
+<body>
+<div   style="text-align: center; display: inline-flexbox; font-weight: bolder; font-size: larger;" > <span style="float: left;" >&lt;</span> Sign In</div>
+<br/>
+
+<div style="text-align: center;">
+    <img style="width: 20%;" src="{% static 'base/images/p.jpg' %}" >
+</div>
+<br/>
+<br/>
+<div style="text-align: center; color: red;" >
+{%if error_message %}
+{{error_message}}
+{% endif %}
+</div>
+<form action="{% url 'users:login' %}" method="post">
+    {% csrf_token %}
+<div>
+    <p style="border: 1px; border-style: solid; height: 5%; padding-top: 10px;" >
+    <span >&nbsp; <img src="{% static 'base/images/flag.jpg' %}" style="width: 15px; height: 15px;"> +234 <span style="font-weight: lighter;">|</span><input type="text" name="account_number" placeholder="Enter phone number" style="border: 0;" ></span>
+</p>
+<p style="border: 1px; border-style: solid; height: 5%; padding-top: 10px;"  >
+    <span> <input type="password" style="border: 0;" name="password" placeholder="  Enter 6-digits password"> </span>
+</p>
+
+<p>
+<input type="checkbox" > <small style="font-weight: lighter; color: gray;" >Remember Password</small>
+</p>
+</div>
+
+<div style="text-align: center;" >
+
+<input style="width: 90%; height: 7%; text-align: center; color: white; background-color: rgb(50, 170, 70); border: 0cap;" type="submit" value="Sign In" >
+</form>
+
+</div>
+<br/>
+<div style="margin-left: 5%;" >
+    <a href="{% url 'users:register' %}" >
+<button style="text-align: center; color: rgb(50, 170, 70); border: 10%; border-style: solid; height:7%; width: 95%; background-color: white; border-color: rgb(50, 170, 70);" >Create a new account</button>
+</a>
+</div>
+<p style="font-weight: bold; text-align: center; font-size: small;" >Forgot Password?</p>
+<p style="text-align: center; position: fixed; bottom: 5%; margin-left: auto; margin-right: auto; width: 99%;" >Need help? <span style="color: rgb(50, 170, 70);" >Chat with Opay Support</span></p>
+</body>

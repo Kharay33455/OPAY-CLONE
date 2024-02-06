@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer</title>
+    <link rel="stylesheet" href="{% static 'base/opay.css' %}">
+</head>
+
+<body style="margin: 5%;">
+    <div>
+      <span> <a href="{% url 'base:home' slug=bankuser.slug %}" style="text-decoration: none;"> <strong style="font-size: larger;"  >&lt;</strong> </a><span style="float:right; font-size: larger; margin-right: 50%;" >Transfer</span></span>
+    
+    <br/>
+    <a href="{% url 'base:to_opay_account' slug=bankuser.slug %}" ><img style="height: 10%; width: 100%; margin-top: 5%;" src="{% static 'base/images/to_opay.png' %}"></a>
+    <br/>
+    <img style="height: 10%; width: 100%; margin-top: 5%;" src="{% static 'base/images/to_other.png' %}">
+    <br/>
+    <video style="width: 100%; height: 10%;" autoplay loop>
+        <source src = "{% static 'base/images/ad.mp4' %}">
+    </video>
+    </div>
+</body>
+
+</html>

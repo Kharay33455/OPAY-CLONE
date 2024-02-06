@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'base/opay.css' %}">
+</head>
+
+<body style="font-size: larger;">
+    {% if msg %}
+    <a href="{% url 'base:home' slug=bankuser.slug %}" >
+    <img style="height: 50%; width: 15%; float: right;" src="{% static 'base/images/done.jpg' %}">
+    </a>
+    <br/>
+    <div>
+        <img style="width: 20%; margin-left:40%; margin-right: 40%;" src="{% static 'base/images/tick.jpg' %}">
+    </div>
+    <p style="text-align: center; font-size: 150%;">
+        {{msg}}
+    </p>
+    <p  style= 'text-align: center; color: green;' >This recipient account is expected to be credited within 5 minutes, subject to notification by the bank.</p>
+    <br/><br/>
+    <span><img src="{% static 'base/images/share_receipt.jpg' %}" style="width: 40%; height:30px inline-start;" >
+        <img src="{% static 'base/images/add_to_favorites.jpg' %}" style="width: 40%; float: inline-end;">
+    </span>
+    <br/>
+    <img src="{% static 'base/images/success_ad.jpg' %}" style="width: 100%;" >
+    {% else %}
+    <body>
+        <img style="width: 100%;" src="{% static 'base/images/opay.jpeg' %}">
+        <br/>
+        <p style="color: red; text-align: center;" >Incorrect pin</p>
+    <br/><br/>
+    <a href="{% url 'base:home' slug=bankuser.slug %}" > <button style="width: 90%; margin-left: 5%; font-size: large; color: white; background-color: rgb(100, 200, 100); height: 50px;">Back home</button></a>
+    
+      
+    </body>
+        {% endif %}
+
+</body>
+
+</html>
