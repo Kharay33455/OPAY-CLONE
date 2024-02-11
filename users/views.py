@@ -50,10 +50,10 @@ def registration_request(request):
         if len(account_number) == 10 and len(password) == 6 and len(first_name) < 20 and len(last_name)< 20 and len(pin) == 4:
             user_new = User.objects.create_user(username = account_number, email = 'dummyemail@gmail.com', first_name = request.POST['first_name'], last_name = request.POST['last_name'], password = request.POST['password'])
             user_new.save()
-            slugger = f'{first_name.lower() + '-'+last_name.lower()}'
+            slugger = f'{first_name.lower() + "-"+last_name.lower()}'
             counter = 1
             while Bankuser.objects.filter(slug = slugger).exists():
-                slugge = f'{first_name.lower() + '-'+ last_name.lower()}'
+                slugge = f'{first_name.lower() + "-" + last_name.lower()}'
                 slugger = f'{slugge}-{counter}'
                 counter +=1
                 

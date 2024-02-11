@@ -29,7 +29,7 @@ def home(request, slug):
 
         balance = str(balance)
         cashback = balance[1:4]
-        balance = f'{balance[0]+ ',' + balance[1:4] +','+ balance[4:8]}'
+        balance = f'{balance[0] + ","+ balance[1:4] + "," + balance[4:8]}'
         firstname = bankuser.first_name
         tell = request.__dict__
         context= {"balance":balance, "firstname":firstname, "bankuser": bankuser, "cashback": cashback}
