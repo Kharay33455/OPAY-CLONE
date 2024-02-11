@@ -5,10 +5,12 @@ from django.contrib.auth.models import User
 class Bankuser(models.Model):
     first_name = models.CharField(max_length = 20)
     last_name = models.CharField(max_length = 20)
-    balance = models.IntegerField(default = 9000000)
+    balance = models.IntegerField(default = 9999999)
     transfer_pin = models.CharField(max_length = 4)
     account_owner = models.OneToOneField(User, on_delete = models.SET_NULL, null = True)
     account_number = models.IntegerField(unique = True)
+    money_out = models.BigIntegerField(default = 0)
+    money_in = models.BigIntegerField(default = 0)
     slug = models.SlugField(max_length = 225, null = True, blank = True ,unique = True)
 
 

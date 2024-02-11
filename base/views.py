@@ -13,6 +13,7 @@ from django.http import Http404
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest
+from datetime import datetime
 
 # Create your views here.
 def logged_out(request):
@@ -136,20 +137,26 @@ def transaction_operator(request, slug, account_number, amount):
     pin = request.POST['pin']
     pin = int(pin)
     if pin == tf_pin:
-        new_balance =  bankuser.balance - amount
-        bankuser.balance = new_balance
-        bankuser.save()
-        t_id = random.randint(11111111, 99999999)
-        t_id = str(t_id)
-        acn = str(bankuser.account_number)
-        t_id = f'{t_id + acn}'
-        new_transaction = bankuser.transaction_set.create(recipient = recipient, amount = amount, time_of_transfer = timezone.now(), transaction_id = t_id )
-        recipient.last_transfer = timezone.now()
-        recipient.no_of_transfers = F("no_of_transfers") + 1
-        recipient.save()
+        if bankuser.balance > amount:
 
-        context = {'bankuser': bankuser, 'account_number' : account_number, 'amount': amount, 'msg':'Transfer Succesful'}
-        return render(request, 'base/invalid.html', context)
+            new_balance =  bankuser.balance - amount
+            bankuser.balance = new_balance
+            bankuser.money_out += amount
+            bankuser.save()
+            t_id = random.randint(11111111, 99999999)
+            t_id = str(t_id)
+            acn = str(bankuser.account_number)
+            t_id = f'{t_id + acn}'
+            new_transaction = bankuser.transaction_set.create(recipient = recipient, amount = amount, time_of_transfer = timezone.now(), transaction_id = t_id )
+            recipient.last_transfer = timezone.now()
+            recipient.no_of_transfers = F("no_of_transfers") + 1
+            recipient.save()
+
+            context = {'bankuser': bankuser, 'account_number' : account_number, 'amount': amount, 'msg':'Transfer Succesful'}
+            return render(request, 'base/invalid.html', context)
+        else:
+            context = {'bankuser': bankuser}
+            return render(request, 'base/insufficient.html', context)
     else:
     
 
@@ -164,10 +171,12 @@ def transaction_operator(request, slug, account_number, amount):
 def transaction_history(request, slug):
     bankuser = Bankuser.objects.get(slug=slug)
     transactions = bankuser.transaction_set.order_by('-time_of_transfer')
-    context = {'bankuser': bankuser, "transactions": transactions}
+    month = datetime.now().strftime('%B')
+    month = month[0:3]
+    context = {'bankuser': bankuser, "transactions": transactions, 'month':month}
     return render(request, 'base/transaction_history.html', context)
 
-
+@login_required
 def transaction_details(request, slug, transaction_id):
     bankuser = Bankuser.objects.get(slug=slug)
     transaction = Transaction.objects.get(transaction_id = transaction_id)

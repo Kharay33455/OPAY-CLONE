@@ -1,7 +1,7 @@
 from django import forms
 
 class AccountNumberForm(forms.Form):
-    account_number = forms.IntegerField(label='' , min_value=10000000000, max_value = 99999999999, widget= forms.NumberInput(attrs={"placeholder" : "Phone No.Opay Account No./Name"}))
+    account_number = forms.IntegerField(label='' , min_value=10000000000, max_value = 99999999999, help_text= 'Enter 11 digits to trigger tranfer' ,widget= forms.NumberInput(attrs={"placeholder" : "Phone No.Opay Account No./Name"}))
     
 
 
